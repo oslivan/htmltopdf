@@ -35,3 +35,7 @@ jsPDF 对 utf8 的支持不太友好，网上也有相关的解决方案，比�
 ### pdfmake   
 
 通过 json 对象的方式生成 pdf，我本身用的是 html 文本，懒得转了，效果未知。
+
+### chromehtmltopdf
+
+这是一个用户因为 wkhtmltopdf 使用旧的 web engine，从而构建一个基于 chrome 内核的导出工具，依赖一些环境，没有尝试过了。
