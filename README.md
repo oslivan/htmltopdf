@@ -1,11 +1,17 @@
 # READEME.md
 
-## 部署
+## Installation or deploy
 
 ```bash
 DOCKER_BUILDKIT=0 docker build -t htmltopdf:latest .
 # docker run -d --rm --name htmltopdf -p 3000:3000 htmltopdf:latest
 docker run -d --restart unless-stopped --name htmltopdf -p 3000:3000 htmltopdf:latest
+```
+
+## Usage 
+
+```bash
+curl -H 'Content-Type: application/json' --data '{"html": "http://www.baidu.com"}' -X POST "http://localhost:3000/pdf" -o test.pdf
 ```
 
 ## 尝试/了解过的方法
