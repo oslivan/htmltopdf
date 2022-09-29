@@ -21,4 +21,12 @@ async function browserInstance() {
   return browser;
 }
 
-module.exports.browserInstance = browserInstance;
+async function createPdf(htmlPath, pdfOpts) {
+  let b = await browserInstance();
+  let p = await b.newPage();
+  await p.goto(htmlPath);
+  await p.pdf(pdfOpts);
+  await p.close();
+}
+
+module.exports.createPdf = createPdf;

@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var { mkdtemp, rm, writeFile } = require('node:fs/promises');
-var { browserInstance } = require('./pptr');
+var { createPdf } = require('./pptr');
 var os = require("os");
 
 var app = express();
@@ -26,23 +26,19 @@ app.post('/pdf', async function (req, res) {
   let params = req.body;
   let d = await mkdtemp(os.tmpdir());
   let htmlPath;
-  if(urlPattern.test(params.html)) {
+  if (urlPattern.test(params.html)) {
     htmlPath = params.html
   } else {
-    localPath = path.join(d, 'document.html')
+    localPath = path.join(d, 'document.html');
     await writeFile(localPath, params.html);
-    htmlPath = `file://${localPath}`
+    htmlPath = `file://${localPath}`;
   }
 
-  let b = await browserInstance();
-  let p = await b.newPage();
-  await p.goto(htmlPath);
-  let pdfPath = path.join(d, 'document.pdf')
-  let pdfOpts = Object.assign({ path: pdfPath }, defaultPdfOpts, params.pdfOpts)
-  await p.pdf(pdfOpts);
+  let pdfPath = path.join(d, 'document.pdf');
+  let pdfOpts = Object.assign({ path: pdfPath }, defaultPdfOpts, params.pdfOpts);
+  await createPdf(htmlPath, pdfOpts);
 
-  rm(d, { recursive: true, force: true }); // 异步执行
-  console.log("Remove path " + d);
+  rm(d, { recursive: true, force: true }); // 异步删除临时目录
   res.sendFile(pdfPath);
 });
 
