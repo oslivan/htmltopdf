@@ -1,6 +1,6 @@
 # READEME.md
 
-## Installation or deploy
+## Deployment
 
 ```bash
 DOCKER_BUILDKIT=0 docker build -t htmltopdf:latest .
@@ -14,7 +14,7 @@ docker run -d --restart unless-stopped --name htmltopdf -p 3000:3000 htmltopdf:l
 curl -H 'Content-Type: application/json' --data '{"html": "http://www.baidu.com"}' -X POST "http://localhost:3000/pdf" -o test.pdf
 ```
 
-## 尝试/了解过的方法
+## Other ways
 
 ### wkhtmltopdf   
 
