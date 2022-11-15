@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+}
+table td,
+table th {
+  border: 1px solid #000;
+  color: #000;
+  height: 40px;
+}
+.title {
+  text-align: center;
+  font-family: FZHTK;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 58px;
+  padding: 0;
+}
+.name {
+  width: 26%;
+  font-size: 28px;
+  font-family: FZFSK;
+  font-weight: 400;
+  word-wrap: break-word;
+  word-break: break-all;
+  line-height: 58px;
+  padding: 0 10px;
+  vertical-align: baseline;
+}
+.content {
+  font-family: FZFSK;
+  font-size: 28px;
+  line-height: 58px; /* tr 宽度为 1px */
+  font-weight: 400;
+  text-align: left;
+  padding: 0 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+  box-sizing: border-box;
+}
+.more{
+  padding: 0 10px;
+  line-height: 59px !important;
+}
+.more > p:last-child {
+  line-height: 58px !important;
+}
+.content p,span,strong{
+  margin: 0 !important;
+  font-family: FZFSK !important;
+  font-size: 28px !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  padding: 0 10px !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+  box-sizing: border-box !important;
+}
+table tr {
+  background: #fff;
+}
+table, tbody {
+  page-break-inside: always;
+}
