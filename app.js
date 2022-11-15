@@ -1,17 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var { mkdtemp, rm, writeFile } = require('node:fs/promises');
-var { createPdf } = require('./pptr');
-var os = require("os");
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const { mkdtemp, rm, writeFile } = require('node:fs/promises');
+const { createPdf } = require('./pptr');
+const os = require("os");
+const bodyParser = require('body-parser');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
