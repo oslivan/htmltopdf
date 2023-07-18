@@ -24,7 +24,8 @@ async function browserInstance() {
 async function createPdf(htmlPath, pdfOpts) {
   let b = await browserInstance();
   let p = await b.newPage();
-  await p.goto(htmlPath);
+  await p.goto(htmlPath, { waitUntil: "networkidle0" });
+  await p.waitForTimeout(2000); // 等待两秒让页面渲染完成
   await p.pdf(pdfOpts);
   await p.close();
 }

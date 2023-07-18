@@ -17,7 +17,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const urlPattern = /^https?:\/\/\w+/;
-const defaultPdfOpts = { scale: 0.5, format: 'A4', margin: { left: "10mm", right: "10mm", bottom: "10mm", top: "10mm" } };
+const defaultPdfOpts = {
+  format: 'A4',
+  scale: 0.5,
+  printBackground: true,
+  displayHeaderFooter: true,
+  margin: { left: "10mm", right: "10mm", bottom: "60mm", top: "10mm" },
+  footerTemplate: '<p style="font-size:12px;margin-left: 550px;"><span class="pageNumber"></span>/<span class="totalPages"></span></p>'
+};
 
 // @描述 提供一个接口用于将 html 转化为 pdf 文件
 // @参数 html     字符串；这里可以传入 body 或者 url
